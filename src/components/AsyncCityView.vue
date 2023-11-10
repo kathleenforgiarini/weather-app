@@ -30,10 +30,9 @@
       <p class="text-8xl mb-8">
         {{ Math.round(weatherData.current.temp) }}&deg;C
       </p>
-
       <p>
         Feels like
-        {{ Math.round(weatherData.current.feels_like) }}&deg
+        {{ Math.round(weatherData.current.feels_like) }} &deg;
       </p>
       <p class="capitalize">
         {{ weatherData.current.weather[0].description }}
@@ -74,6 +73,7 @@
         </div>
       </div>
     </div>
+
     <hr class="border-white border-opacity-10 border w-full" />
 
     <!-- Weekly Weather -->
@@ -125,6 +125,7 @@ const getWeatherData = async () => {
     const weatherData = await axios.get(
       `https://api.openweathermap.org/data/2.5/onecall?lat=${route.query.lat}&lon=${route.query.lng}&exclude={part}&appid=7efa332cf48aeb9d2d391a51027f1a71&units=metric`
     );
+
     // cal current date & time
     const localOffset = new Date().getTimezoneOffset() * 60000;
     const utc = weatherData.data.current.dt * 1000 + localOffset;
@@ -137,12 +138,14 @@ const getWeatherData = async () => {
       hour.currentTime = utc + 1000 * weatherData.data.timezone_offset;
     });
 
+    // Flicker Delay
+    await new Promise((res) => setTimeout(res, 1000));
+
     return weatherData.data;
-  } catch {
+  } catch (err) {
     console.log(err);
   }
 };
-
 const weatherData = await getWeatherData();
 
 const router = useRouter();
