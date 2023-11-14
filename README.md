@@ -12,6 +12,14 @@ Class from Youtube - Net Ninja - Working with Vuejs, Tailwind and APIs
 npm install
 ```
 
+## Usage
+To use this project, you can follow these steps:
+
+ Clone the repository to your local machine using Git:
+   ```sh
+   git clone https://github.com/kathleenforgiarini/weather-app.git
+   ```
+
 ### Compile and Hot-Reload for Development
 
 ```sh
